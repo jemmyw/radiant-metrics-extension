@@ -1,3 +1,25 @@
 = Metrics
 
-Description goes here
+This extension enables metrics and A/B testing using the Vanity library (http://vanity.labnotes.org).
+
+== Requirements
+
+Run `rake gems` after installation for required gems.
+
+== Usage
+
+Create metrics and A/B tests under the new metrics tab in the Radiant admin.
+
+Now you can do the following on your pages:
+
+  <r:track name="signup" />
+
+This will increment a metric named signup.
+
+  <r:ab:test name="homepage test">
+    <r:a>Half your users will be shown this text</r:a>
+    <r:b>The other half will be shown this text</r:b>
+  </r:ab:test>
+
+This will run the A/B test named "homepage test". Under the metrics dashboard tab you will
+see the results for the test.
