@@ -10,6 +10,7 @@ unless defined? RADIANT_ROOT
   end
 end
 require "#{RADIANT_ROOT}/spec/spec_helper"
+require 'remarkable_rails'
 
 Dataset::Resolver.default << (File.dirname(__FILE__) + "/datasets")
 
