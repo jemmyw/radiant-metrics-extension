@@ -2,9 +2,23 @@
 
 This extension enables metrics and A/B testing using the Vanity library (http://vanity.labnotes.org).
 
-== Requirements
+== Installation
+
+Place the files for this extension within vendor/extensions/metrics in your Radiant application, and
+restart your server.
+
+Via git clone:
+git clone git://github.com/jemmyw/radiant-metrics-extension.git vendor/extensions/metrics
 
 Run `rake gems` after installation for required gems.
+
+== Configuration
+
+The metrics extension comes bundled with a version of Vanity for active record. You can
+specify to use the system version of Vanity:
+
+* gem install vanity
+* add Radiant::Config['metrics.use_gem'] = true to config/environment.rb
 
 == Usage
 
