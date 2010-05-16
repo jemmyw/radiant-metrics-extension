@@ -18,7 +18,7 @@ The metrics extension comes bundled with a version of Vanity for active record. 
 specify to use the system version of Vanity:
 
 * gem install vanity
-* add Radiant::Config['metrics.use_gem'] = true to config/environment.rb
+* add <pre>Radiant::Config['metrics.use_gem'] = true</pre> to config/environment.rb
 
 == Usage
 
