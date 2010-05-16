@@ -6,6 +6,14 @@ class MetricsExtension < Radiant::Extension
   description "Describe your extension here"
   url "http://yourwebsite.com/metrics"
 
+  extension_config do |config|
+    config.gem 'rspec-rails', :lib => false
+    config.gem 'rspec', :lib => false
+    config.gem 'remarkable', :lib => false
+    config.gem 'remarkable_activerecord', :lib => false
+    config.gem 'remarkable_rails', :lib => false
+  end
+
   def activate
     require 'vanity'
     require 'lib/metrics_playground'
