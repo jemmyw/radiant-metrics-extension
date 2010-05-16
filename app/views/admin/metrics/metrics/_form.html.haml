@@ -1,21 +1,11 @@
-- form_for(@metric, :url => url) do |f|
+- form_for(@db_metric, :url => url) do |f|
   .form-area
-    %table.fieldset
-      %tbody
-        %tr
-          %th.label
-            %label Name
-          %td.field
-            = f.text_field :name, :class => 'textbox'
-        %tr
-          %th.label
-            %label Description
-          %td.field
-            = f.text_field :description, :class => 'textbox'
-        %tr
-          %th.label
-            %label Count
-          %td= h @metric.count
+    %p.title
+      = f.label :name
+      = f.text_field :name, :class => 'textbox'
+    %p.title
+      = f.label :description
+      = f.text_field :description, :class => 'textbox'
 
   %p.buttons
     = f.submit 'Save', :class => 'button'

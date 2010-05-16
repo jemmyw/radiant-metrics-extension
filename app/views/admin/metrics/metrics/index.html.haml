@@ -6,7 +6,7 @@
         %th Description
         %th Total Count
     %tbody
-      - @metrics.each do |metric|
+      - @db_metrics.each do |metric|
         %tr.node.level_1
           %td
             %a{:href => edit_admin_metric_path(metric)}

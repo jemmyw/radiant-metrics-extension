@@ -1,42 +1,6 @@
 module Admin::Metrics
-  class MetricsController < ApplicationController
-    def index
-      @metrics = DbMetric.find(:all)
-    end
-
-    def new
-      @metric = DbMetric.new
-    end
-
-    def create
-      @metric = DbMetric.new(params[:db_metric])
-
-      if @metric.save
-        redirect_to admin_metrics_url
-      else
-        render :action => 'new'
-      end
-    end
-
-    def edit
-      @metric = DbMetric.find(params[:id])
-    end
-
-    def update
-      @metric = DbMetric.find(params[:id])
-
-      if @metric.update_attributes(params[:db_metric])
-        redirect_to admin_metrics_url
-      else
-        render :action => 'edit', :id => @metric.id
-      end
-    end
-
-    def destroy
-      @metric = DbMetric.find(params[:id])
-      @metric.destroy
-      redirect_to admin_metrics_url
-    end
+  class MetricsController < Admin::ResourceController
+    model_class 'db_metric'
 
     def track
       id = params[:id].to_sym

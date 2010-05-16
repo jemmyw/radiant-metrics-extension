@@ -6,18 +6,6 @@ class MetricsExtension < Radiant::Extension
   description "Describe your extension here"
   url "http://yourwebsite.com/metrics"
 
-  define_routes do |map|
-    map.namespace :admin do |admin|
-      admin.namespace :metrics do |metrics|
-        metrics.resources :metrics, :name_prefix => 'admin_'
-        metrics.resources :ab_tests, :name_prefix => 'admin_'
-      end
-    end
-
-    map.vanity '/admin/metrics/dashboard/:action/:id', :controller => 'vanity'
-    map.track '/metrics/track/:id', :controller => 'admin/metrics/metrics', :action => 'track'
-  end
-
   def activate
     require 'vanity'
     require 'lib/metrics_playground'
