@@ -62,6 +62,7 @@ module MetricTags
     end
   end
 
+  desc "Render the contents of this tag if the experiment chooses A"
   tag 'ab:test:a' do |tag|
     experiment = Vanity.playground.experiments[tag.locals.experiment_id]
     unless experiment.choose
@@ -69,6 +70,7 @@ module MetricTags
     end
   end
 
+  desc "Render the contents of this tag is the experiment chooses B"
   tag 'ab:test:b' do |tag|
     experiment = Vanity.playground.experiments[tag.locals.experiment_id]
     if experiment.choose
