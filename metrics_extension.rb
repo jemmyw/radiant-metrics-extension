@@ -3,8 +3,8 @@ require_dependency 'application_controller'
 
 class MetricsExtension < Radiant::Extension
   version "1.0"
-  description "Describe your extension here"
-  url "http://yourwebsite.com/metrics"
+  description "Metrics for Radiant"
+  url "http://github.com/jemmyw/radiant-metrics-extension"
 
   extension_config do |config|
     config.gem 'rspec-rails', :lib => false
