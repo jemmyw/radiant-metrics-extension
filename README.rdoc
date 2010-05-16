@@ -23,3 +23,5 @@ This will increment a metric named signup.
 
 This will run the A/B test named "homepage test". Under the metrics dashboard tab you will
 see the results for the test.
+
+*Note:* using <r:track> or <r:ab:test> will switch off caching for that page.
