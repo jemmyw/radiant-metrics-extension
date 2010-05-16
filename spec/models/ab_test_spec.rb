@@ -67,4 +67,13 @@ describe AbTest do
       end
     end
   end
+
+  describe '#available_metrics' do
+    it 'should return all the DbMetrics' do
+      @ab = AbTest.new
+      @db = DbMetric.new
+      DbMetric.should_receive(:all).and_return([@db])
+      @ab.available_metrics.should == [@db]
+    end
+  end
 end
