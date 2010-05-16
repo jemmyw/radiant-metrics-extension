@@ -7,11 +7,13 @@ module MetricTags
     end
   end
 
+  # Process page after setting Vanity context
   def process_with_vanity(*args)
     Vanity.context = self
     process_without_vanity(*args)
   end
 
+  # Identify user for vanity
   def vanity_identity
     if response
       jar = ActionController::CookieJar.new(self)
@@ -21,6 +23,13 @@ module MetricTags
     end
   end
 
+  desc %{
+    Increments a metric with the given name.
+
+    *Usage:*
+
+    <pre><code><r:track name="signup" /></code></pre>
+  }
   tag 'track' do |tag|
     self.metaclass.class_eval{define_method(:cache?){false}}
     if tag.attr['name']
@@ -33,6 +42,16 @@ module MetricTags
     tag.expand
   end
 
+  desc %Q{
+    Run an A/B test with the given name.
+
+    *Usage:*
+
+    <pre><code><r:ab:test name="homepage test">
+      <r:a>Shown to A users</r:a>
+      <r:b>Shown to B users</r:b>
+    </r:ab:test></code></pre>
+  }
   tag 'ab:test' do |tag|
     if tag.attr['name']
       ab_test = AbTest.find_by_name(tag.attr['name'])
