@@ -1,0 +1,59 @@
+---
+layout: page
+title: Contributing
+---
+
+By all means.
+
+h3. Relevant Links
+
+* "Google Group":http://groups.google.com/group/vanity-talk
+* "Source code":http://github.com/assaf/vanity
+* "Continuous integration":http://runcoderun.com/assaf/vanity
+* "Code metrics":http://devver.net/caliper/project?repo=git%3A%2F%2Fgithub.com%2Fassaf%2Fvanity.git
+* "Open Issues":http://github.com/assaf/vanity/issues
+
+
+h3. Building From Source
+
+Vanity test suite requires "Rails":http://rubyonrails.org, "Mocha":http://mocha.rubyforge.org/, "Timecop":http://github.com/jtrupiano/timecop and "SQLite3":http://rubyforge.org/projects/sqlite-ruby/.  To run the test suite:
+
+<pre>
+$ gem install rails mocha timecop sqlite3-ruby
+$ rake
+</pre>
+
+To clean up after yourself:
+
+<pre>
+$ rake clobber
+</pre>
+
+To package Vanity as a gem and install on your machine:
+
+<pre>
+$ rake install
+</pre>
+
+h3. Documentation
+
+Documentation is written in "Textile":http://redcloth.org/textile/writing-paragraph-text/, and converted to HTML using "Jekyll":http://jekyllrb.com/.
+
+API reference is "RDoc":http://rdoc.sourceforge.net/doc/index.html, converted to HTML using "Yardoc":http://yardoc.org/. 
+
+To build and view documentation:
+
+<pre>
+$ gem install yardoc jekyll
+$ rake docs
+$ open html/index.html
+</pre>
+
+
+h3. Open Issues
+
+<notextile>
+<table id="issues">
+  <tbody></tbody>
+</table>
+</notextile>

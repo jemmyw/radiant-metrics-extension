@@ -1,7 +1,7 @@
 module Metrics
   # Override vanity loading to load
   # metrics and experiments from the database.
-  class Playground < Vanity::Playground
+  class Playground < ::Vanity::Playground
     def load!
       @experiments = {}
       @metrics = {}
