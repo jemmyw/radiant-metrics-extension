@@ -1,0 +1,23 @@
+- form_for(@metric, :url => url) do |f|
+  .form-area
+    %table.fieldset
+      %tbody
+        %tr
+          %th.label
+            %label Name
+          %td.field
+            = f.text_field :name, :class => 'textbox'
+        %tr
+          %th.label
+            %label Description
+          %td.field
+            = f.text_field :description, :class => 'textbox'
+        %tr
+          %th.label
+            %label Count
+          %td= h @metric.count
+
+  %p.buttons
+    = f.submit 'Save', :class => 'button'
+    or
+    = link_to 'Cancel', admin_metrics_path

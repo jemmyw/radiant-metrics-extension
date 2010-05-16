@@ -1,0 +1,20 @@
+.outset
+  %table.index
+    %thead
+      %tr
+        %th Name
+        %th Tag name
+        %th Metric
+        %th.modify Modify
+    %tbody
+      - @ab_tests.each do |ab_test|
+        %tr.node.level_1
+          %td= link_to ab_test.name, edit_admin_ab_test_path(ab_test)
+          %td= ab_test.experiment_id
+          %td= ab_test.metric.name
+          %td.remove
+            = link_to t('remove'), admin_ab_test_path(ab_test), :method => :delete, :confirm => 'Are you sure?'
+
+#actions
+  %ul
+    %li= link_to image('plus') + ' New test', new_admin_ab_test_path

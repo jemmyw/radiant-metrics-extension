@@ -1,0 +1,19 @@
+.outset
+  %table.index
+    %thead
+      %tr
+        %th Name
+        %th Description
+        %th Total Count
+    %tbody
+      - @metrics.each do |metric|
+        %tr.node.level_1
+          %td
+            %a{:href => edit_admin_metric_path(metric)}
+              %span.title= metric.name
+          %td= metric.description
+          %td= metric.count
+
+#actions
+  %ul
+    %li= link_to image('plus') + ' New metric', new_admin_metric_path
