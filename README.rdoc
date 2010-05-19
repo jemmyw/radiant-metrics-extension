@@ -12,6 +12,11 @@ git clone git://github.com/jemmyw/radiant-metrics-extension.git vendor/extension
 
 Run `rake gems` after installation for required gems.
 
+Now run:
+
+* rake radiant:extensions:metrics:migrate
+* rake radiant:extensions:metrics:update
+
 == Configuration
 
 The metrics extension comes bundled with a version of Vanity for active record. You can
