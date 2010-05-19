@@ -16,7 +16,9 @@ class MetricsExtension < Radiant::Extension
 
   def activate
     require 'lib/metrics_vanity'
+    require 'lib/metrics_identity'
 
+    Page.send :include, Metrics::Identity
     Page.send :include, MetricTags
 
     tab "Metrics" do

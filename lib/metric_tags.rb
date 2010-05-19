@@ -13,16 +13,6 @@ module MetricTags
     process_without_vanity(*args)
   end
 
-  # Identify user for vanity
-  def vanity_identity
-    if response
-      jar = ActionController::CookieJar.new(self)
-      @vanity_identity = jar['vanity_id'] || ActiveSupport::SecureRandom.hex(16)
-      jar["vanity_id"] = {:value=>@vanity_identity, :expires=>1.month.from_now}
-      @vanity_identity
-    end
-  end
-
   desc %{
     Increments a metric with the given name.
 
