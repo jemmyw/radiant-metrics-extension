@@ -25,7 +25,10 @@ specify to use the system version of Vanity:
 * gem install vanity
 * add Radiant::Config['metrics.use_gem'] = true to config/environment.rb
 
-== Usage
+If you configure to use the system Vanity you must configure its Redis connection
+in your environment file.
+
+== Usage (page tags)
 
 Create metrics and A/B tests under the new metrics tab in the Radiant admin.
 
@@ -44,3 +47,14 @@ This will run the A/B test named "homepage test". Under the metrics dashboard ta
 see the results for the test.
 
 *Note:* using <r:track> or <r:ab:test> will switch off caching for that page.
+
+== Usage (Javascript)
+
+You can also track metrics via Javascript. Using the Javascript tracking allows the page
+to be cached. Include the following in your layout:
+
+  <script type="text/javascript" src="/javascripts/metrics-min.js"></script>
+
+Now you can track a metric via AJAX javascript calls:
+
+  <a href="http://example.com/signup" onclick="Metrics.track('signup');">Sign up now!</a>
