@@ -37,10 +37,30 @@ describe Metrics::Identity do
   end
 
   describe '#vanity_identity' do
+    before { @object.stub!(:vanity_cookies).and_return(nil) }
     subject { @object.vanity_identity }
 
+    context 'param method is available' do
+      before { @object.stub!(:params).and_return({}) }
+
+      context 'and has vanity_id key' do
+        before { @object.params[:vanity_id] = 'abc' }
+        it { should == 'abc' }
+      end
+
+      context 'and has no vanity_id key' do
+        context 'but does have vanity cookie' do
+          before { @object.stub!(:vanity_cookies).and_return({'vanity_id' => '123'}) }
+          it { should == '123' }
+        end
+        
+        context 'and has no vanity cookie' do
+          it { should be_nil }
+        end
+      end
+    end
+
     context 'no cookies are available' do
-      before { @object.stub!(:vanity_cookies).and_return(nil) }
       it { should be_nil }
     end
 

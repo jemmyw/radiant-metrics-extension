@@ -12,7 +12,9 @@ module Metrics
 
     # Identify user for vanity
     def vanity_identity
-      if vanity_cookies
+      if respond_to?(:params) && params[:vanity_id]
+        params[:vanity_id]
+      elsif vanity_cookies
         @vanity_identity = vanity_cookies['vanity_id'] || ActiveSupport::SecureRandom.hex(16)
         vanity_cookies["vanity_id"] = {:value => @vanity_identity, :expires => 1.month.from_now}
         @vanity_identity
