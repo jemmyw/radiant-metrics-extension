@@ -15,8 +15,10 @@ describe "MetricTags" do
 
   describe '<r:track>' do
     before do
+      @metric = mock(:db_metric, :experiment_id => :signup)
+      DbMetric.stub!(:find_by_name).and_return(@metric)
       Vanity.playground.stub!(:track!)
-      @tag = '<r:track name="signup" />'
+      @tag = '<r:track name="Signup" />'
     end
 
     it { should == '' }
@@ -27,8 +29,13 @@ describe "MetricTags" do
       @page.cache?.should be_false
     end
 
+    it 'should find the DbMetric by name' do
+      DbMetric.should_receive(:find_by_name).with('Signup').and_return(@metric)
+      subject
+    end
+
     it 'should call Vanity.playground.track! passing the attribute name' do
-      Vanity.playground.should_receive(:track!).with('signup')
+      Vanity.playground.should_receive(:track!).with(:signup)
       subject
     end
   end

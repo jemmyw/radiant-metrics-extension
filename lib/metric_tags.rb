@@ -22,8 +22,9 @@ module MetricTags
   }
   tag 'track' do |tag|
     self.metaclass.class_eval{define_method(:cache?){false}}
-    if tag.attr['name']
-      Vanity.playground.track! tag.attr['name'].to_s
+    db_metric = DbMetric.find_by_name(tag.attr['name'])
+    if db_metric
+      Vanity.playground.track! db_metric.experiment_id
     end
   end
 

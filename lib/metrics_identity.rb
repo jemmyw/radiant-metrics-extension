@@ -12,7 +12,7 @@ module Metrics
 
     # Identify user for vanity
     def vanity_identity
-      if respond_to?(:params) && params[:vanity_id]
+      if respond_to?(:params) && params && params[:vanity_id]
         params[:vanity_id]
       elsif vanity_cookies
         @vanity_identity = vanity_cookies['vanity_id'] || ActiveSupport::SecureRandom.hex(16)
