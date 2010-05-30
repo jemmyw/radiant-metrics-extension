@@ -15,7 +15,7 @@ describe "MetricTags" do
 
   describe '<r:track>' do
     before do
-      @metric = mock(:db_metric, :experiment_id => :signup)
+      @metric = mock(:db_metric, :metric_id => :signup)
       DbMetric.stub!(:find_by_name).and_return(@metric)
       Vanity.playground.stub!(:track!)
       @tag = '<r:track name="Signup" />'

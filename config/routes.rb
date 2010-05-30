@@ -7,5 +7,5 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.vanity '/admin/metrics/dashboard/:action/:id', :controller => 'vanity'
-  map.track '/metrics/track/:id', :controller => 'admin/metrics/metrics', :action => 'track'
+  map.track '/metrics/track/:id.:format', :controller => 'admin/metrics/metrics', :action => 'track'
 end

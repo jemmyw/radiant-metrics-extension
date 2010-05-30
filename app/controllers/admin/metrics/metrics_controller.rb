@@ -15,7 +15,7 @@ module Admin::Metrics
     # Use this action to track a metric.
     def track
       @db_metric = DbMetric.find_by_name(params[:id])
-      Vanity.playground.track! @db_metric.experiment_id
+      Vanity.playground.track! @db_metric.metric_id
 
       respond_to do |format|
         format.js { render :json => true }

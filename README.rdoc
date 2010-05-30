@@ -39,9 +39,9 @@ Create metrics and A/B tests under the new metrics tab in the Radiant admin.
 
 Now you can do the following on your pages:
 
-  <r:track name="signup" />
+  <r:track name="Signup" />
 
-This will increment a metric named signup.
+This will increment a metric named Signup.
 
   <r:ab:test name="homepage test">
     <r:a>Half your users will be shown this text</r:a>

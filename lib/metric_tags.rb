@@ -24,7 +24,7 @@ module MetricTags
     self.metaclass.class_eval{define_method(:cache?){false}}
     db_metric = DbMetric.find_by_name(tag.attr['name'])
     if db_metric
-      Vanity.playground.track! db_metric.experiment_id
+      Vanity.playground.track! db_metric.metric_id
     end
   end
 
