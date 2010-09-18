@@ -8,7 +8,7 @@ describe Metrics::Identity do
 
   before do
     @object = Object.new
-    @object.metaclass.send(:include, Metrics::Identity)
+    @object.singleton_class.send(:include, Metrics::Identity)
     @request = mock(:request, :cookies => {})
     @response = mock(:response)
   end

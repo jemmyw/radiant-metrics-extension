@@ -21,7 +21,7 @@ module MetricTags
     <pre><code><r:track name="signup" /></code></pre>
   }
   tag 'track' do |tag|
-    self.metaclass.class_eval{define_method(:cache?){false}}
+    self.singleton_class.class_eval{define_method(:cache?){false}}
     db_metric = DbMetric.find_by_name(tag.attr['name'])
     if db_metric
       Vanity.playground.track! db_metric.metric_id
@@ -29,7 +29,7 @@ module MetricTags
   end
 
   tag 'ab' do |tag|
-    self.metaclass.class_eval{define_method(:cache?){false}}
+    self.singleton_class.class_eval{define_method(:cache?){false}}
     tag.expand
   end
 

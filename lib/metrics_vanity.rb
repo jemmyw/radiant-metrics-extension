@@ -15,21 +15,16 @@ module Metrics
 
     def load_vanity_gem
       unless defined?(::Vanity)
-        unless Radiant::Config['metrics.use_gem']
-          $: << File.join(File.dirname(__FILE__), 'vanity', 'lib')
-        end
-
         require 'vanity'
         require 'metrics_playground'
       end
     end
 
-    def load_vanity_metrics(create_table = false)
+    def load_vanity_metrics
       load_vanity_gem
 
       unless ::Vanity.playground.is_a?(Metrics::Playground)
         create_vanity_playground
-        create_vanity_table if create_table
         ::Vanity.playground.load!
       end
     end
@@ -46,4 +41,4 @@ ApplicationController.class_eval do
   prepend_before_filter :load_vanity_metrics
 end
 
-Metrics::Vanity.load_vanity_metrics(true)
+Metrics::Vanity.load_vanity_metrics

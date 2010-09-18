@@ -1,0 +1,16 @@
+%p#ab-test
+  = label_tag 'ab_test', "A/B Test"
+  = f.select :ab_test_id, AbTest.all.map{|test| [test.name, test.id]}
+
+:javascript
+  $(document).observe('dom:loaded', function() {
+    var select = $('page_class_name');
+    if(select) {
+      var handleSelectUpdate = function() {
+        var method = select.getValue() == 'AbTestPage' ? 'show' : 'hide';
+        $('ab-test')[method]();
+      }
+      select.observe('change', handleSelectUpdate);
+      handleSelectUpdate();
+    }
+  });

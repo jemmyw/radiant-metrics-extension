@@ -5,6 +5,10 @@ class AbTest < ActiveRecord::Base
         ab_test.load
       end
     end
+
+    def available_metrics
+      DbMetric.all
+    end
   end
 
   belongs_to :metric, :class_name => 'DbMetric'
@@ -29,11 +33,8 @@ class AbTest < ActiveRecord::Base
       experiment = Vanity::Experiment::AbTest.new(Vanity.playground, experiment_id, name)
       experiment.description(self.description)
       experiment.metrics(metric.metric_id)
+      experiment.alternatives false, true
       experiment
     end
-  end
-
-  def available_metrics
-    DbMetric.all
   end
 end

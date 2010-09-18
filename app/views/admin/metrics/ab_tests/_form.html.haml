@@ -1,11 +1,11 @@
-- form_for(@ab_test, :url => url) do |f|
+- form_for(@ab_test, :url => url, :html => {:method => :put}) do |f|
   .form-area
     %p.title
       = f.label :name
       = f.text_field :name, :class => 'textbox'
     %p
       = f.label :metric
-      = f.select :metric_id, @ab_test.available_metrics.map{|metric| [metric.name, metric.id] }
+      = f.select :metric_id, AbTest.available_metrics.map{|metric| [metric.name, metric.id] }
 
   %p.buttons
     = f.submit 'Save', :class => 'button'

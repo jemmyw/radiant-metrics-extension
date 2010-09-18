@@ -19,6 +19,14 @@ describe AbTest do
     end
   end
 
+  describe '::available_metrics' do
+    it 'should return all the DbMetrics' do
+      @db = DbMetric.new
+      DbMetric.should_receive(:all).and_return([@db])
+      AbTest.available_metrics.should == [@db]
+    end
+  end
+
   describe '#load' do
     before do
       @ab_test = AbTest.new(:name => 'test')
@@ -65,15 +73,6 @@ describe AbTest do
         before { @ab_test.name = 'test ab_test' }
         it { should == :test_ab_test }
       end
-    end
-  end
-
-  describe '#available_metrics' do
-    it 'should return all the DbMetrics' do
-      @ab = AbTest.new
-      @db = DbMetric.new
-      DbMetric.should_receive(:all).and_return([@db])
-      @ab.available_metrics.should == [@db]
     end
   end
 end
