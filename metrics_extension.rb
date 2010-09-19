@@ -2,7 +2,7 @@
 require_dependency 'application_controller'
 
 class MetricsExtension < Radiant::Extension
-  version "1.0.2"
+  version "1.1.0"
   description "Metrics for Radiant"
   url "http://github.com/jemmyw/radiant-metrics-extension"
 
