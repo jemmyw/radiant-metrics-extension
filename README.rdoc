@@ -2,6 +2,12 @@
 
 This extension enables metrics and A/B testing using the Vanity library (http://vanity.labnotes.org).
 
+== Upgrade
+
+Note that this version is incompatible with the metrics data from the previous version if the
+bundled Vanity gem was used. Vanity is no longer bundled with the extension and must be
+installed separately.
+
 == Installation
 
 Place the files for this extension within vendor/extensions/metrics in your Radiant application, and
@@ -24,16 +30,10 @@ Now run:
 
 == Configuration
 
-The metrics extension comes bundled with a version of Vanity for active record. You can
-specify to use the system version of Vanity:
+The Vanity gem requires Redis (http://code.google.com/p/redis/) to be running as a datastore.
+Alternatively a version of Vanity with ActiveRecord support is available at http://github.com/jemmyw/vanity
 
-* gem install vanity
-* add Radiant::Config['metrics.use_gem'] = true to config/environment.rb
-
-If you configure to use the system Vanity you must configure its Redis connection
-in your environment file.
-
-== Usage (page tags)
+== Using page tags for metrics and A/B tests
 
 Create metrics and A/B tests under the new metrics tab in the Radiant admin.
 
@@ -53,7 +53,12 @@ see the results for the test.
 
 *Note:* using <r:track> or <r:ab:test> will switch off caching for that page.
 
-== Usage (Javascript)
+== Using A/B test pages
+
+You can run an A/B test by creating a new page of the type AbTest. This will alternatively
+display the first two children of the page in it's place.
+
+== Using Javascript for metrics
 
 You can also track metrics via Javascript. Using the Javascript tracking allows the page
 to be cached. Include the following in your layout:
