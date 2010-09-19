@@ -66,12 +66,22 @@ describe AbTestPage do
     context 'experiment chooses false' do
       it { should == @page_a }
     end
+
+    context 'experiment returns nil due to AbTest being destroyed' do
+      before { @page.stub!(:experiment).and_return(nil) }
+      it { should == @page_a }
+    end
   end
 
   describe '#experiment' do
     it 'should return the ab_test experiment' do
       AbTest.should_receive(:find).with(1).and_return(@ab_test)
       @page.experiment.should == @experiment
+    end
+
+    it 'should return nil if there is no ab_test' do
+      AbTest.should_receive(:find).with(1).and_raise ActiveRecord::RecordNotFound
+      @page.experiment.should be_nil
     end
   end
 

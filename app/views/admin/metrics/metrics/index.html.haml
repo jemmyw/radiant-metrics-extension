@@ -5,6 +5,7 @@
         %th Name
         %th Description
         %th Total Count
+        %th.modify Modify
     %tbody
       - @db_metrics.each do |metric|
         %tr.node.level_1
@@ -13,6 +14,8 @@
               %span.title= metric.name
           %td= metric.description
           %td= metric.count
+          %td.remove
+            = link_to t('remove'), admin_metric_path(metric), :method => :delete, :confirm => 'Are you sure?'
 
 #actions
   %ul

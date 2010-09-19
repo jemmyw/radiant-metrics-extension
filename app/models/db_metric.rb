@@ -10,6 +10,7 @@ class DbMetric < ActiveRecord::Base
   validates_presence_of :name
 
   after_create :load
+  after_destroy :unload_metric
 
   def load
     Vanity.playground.metrics[metric_id] = metric
@@ -29,5 +30,9 @@ class DbMetric < ActiveRecord::Base
       metric.description(self.description)
       metric
     end
+  end
+
+  def unload_metric
+    Vanity.playground.reload!
   end
 end

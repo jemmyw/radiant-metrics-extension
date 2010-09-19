@@ -1,16 +1,7 @@
 module Metrics
   module Vanity
     def create_vanity_playground
-      adapter = Radiant::Config['metrics.adapter'] || 'active_record'
-      ::Vanity.playground = Metrics::Playground.new(:adapter => adapter)
-    end
-
-    def create_vanity_table
-      begin
-        ::Vanity.playground.redis.create_table!
-      rescue Exception => e
-        puts "Vanity table could not be created: #{e.to_s}"
-      end
+      ::Vanity.playground = Metrics::Playground.new
     end
 
     def load_vanity_gem
@@ -30,7 +21,6 @@ module Metrics
     end
 
     module_function :create_vanity_playground
-    module_function :create_vanity_table
     module_function :load_vanity_gem
     module_function :load_vanity_metrics
   end

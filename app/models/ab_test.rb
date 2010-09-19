@@ -12,11 +12,13 @@ class AbTest < ActiveRecord::Base
   end
 
   belongs_to :metric, :class_name => 'DbMetric'
+  has_many :ab_test_pages
 
   validates_presence_of :name
   validates_presence_of :metric
 
   after_create :load
+  after_destroy :unload_experiment
 
   def load
     experiment = self.experiment
@@ -36,5 +38,9 @@ class AbTest < ActiveRecord::Base
       experiment.alternatives false, true
       experiment
     end
+  end
+
+  def unload_experiment
+    Vanity.playground.reload!
   end
 end

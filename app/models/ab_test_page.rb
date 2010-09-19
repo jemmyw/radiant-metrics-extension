@@ -19,7 +19,7 @@ class AbTestPage < Page
   def choose
     Vanity.context = self
 
-    if experiment.choose
+    if experiment && experiment.choose
       page_b
     else
       page_a
@@ -28,6 +28,8 @@ class AbTestPage < Page
 
   def experiment
     AbTest.find(ab_test_id).experiment
+  rescue ActiveRecord::RecordNotFound
+    nil
   end
 
   def page_a

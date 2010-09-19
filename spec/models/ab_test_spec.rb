@@ -75,4 +75,16 @@ describe AbTest do
       end
     end
   end
+
+  describe 'after_destroy' do
+    before do
+      @db_metric = DbMetric.create(:name => 'test')
+      @ab_test = AbTest.create(:name => 'test', :metric => @db_metric)
+    end
+
+    it 'should call Vanity.playground.reload!' do
+      Vanity.playground.should_receive(:reload!)
+      @ab_test.destroy
+    end
+  end
 end
