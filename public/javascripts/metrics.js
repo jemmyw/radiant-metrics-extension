@@ -2,14 +2,11 @@
 // @compilation_level ADVANCED_OPTIMIZATIONS
 // @output_file_name default.js
 // ==/ClosureCompiler==
-
-// ADD YOUR CODE HERE
 function sendRequest(url, callback, postData) {
   var req = createXMLHTTPObject();
   if (!req) return;
   var method = (postData) ? "POST" : "GET";
   req.open(method, url, true);
-  req.setRequestHeader('User-Agent', 'XMLHTTP/1.0');
   if (postData)
     req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   req.onreadystatechange = function () {
