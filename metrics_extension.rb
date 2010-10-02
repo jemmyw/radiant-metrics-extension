@@ -38,7 +38,21 @@ class MetricsExtension < Radiant::Extension
   end
 
   def deactivate
-#    admin.tabs.remove "Metrics"
   end
 
+end
+
+SiteController unless defined? SiteController
+
+class SiteController
+  def set_cache_control_with_ab_page
+    if @page && @page.is_a?(AbTestPage) &&
+      (request.head? || request.get?) && @page.cache?
+      expires_in self.class.cache_timeout, :public => false, :private => true
+    else
+      set_cache_control_without_ab_page
+    end
+  end
+
+  alias_method_chain :set_cache_control, :ab_page
 end

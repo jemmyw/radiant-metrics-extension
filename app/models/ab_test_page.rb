@@ -6,10 +6,6 @@ class AbTestPage < Page
 
   belongs_to :ab_test
 
-  def cache?
-    false
-  end
-
   def process(request, response)
     @request, @response = request, response
     @page = choose

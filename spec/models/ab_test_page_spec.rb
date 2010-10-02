@@ -12,11 +12,6 @@ describe AbTestPage do
     @page.ab_test_id = 1
   end
 
-  describe '#cache?' do
-    subject { @page.cache? }
-    it { should be_false }
-  end
-
   describe '#process' do
     before do
       @request = mock(:request)
